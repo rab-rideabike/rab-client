@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { NativeBaseProvider, Box, Text } from "native-base";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Login from "./src/components/Login";
+import { customTheme } from "./src/theme";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider theme={customTheme}>
+      <StatusBar animated={true} />
+        <SafeAreaProvider>
+          <SafeAreaView>
+              <Login />
+          </SafeAreaView>
+        </SafeAreaProvider>
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
