@@ -17,5 +17,8 @@ export const customTheme = extendTheme({
     amber: {
       400: "#d97706",
     },
+    dark: {
+      50: "#1D1D1D"
+    }
   },
 });
