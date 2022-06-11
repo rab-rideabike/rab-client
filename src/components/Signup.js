@@ -3,7 +3,7 @@ import { Box, Text, Heading, Icon, VStack, FormControl, Input, Link, Button, HSt
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
 
 
-const Login = () => {
+const Signup = () => {
   const [show, setShow] = React.useState(false);
   return (
       <Center width="100%" h="100%">
@@ -11,12 +11,12 @@ const Login = () => {
            <Heading size="lg" fontSize="36" marginLeft="40px" fontWeight="600" color="white" _dark={{
         color: "white"
       }}>
-          Welcome
+          Create an
         </Heading>
         <Heading size="lg" fontSize="36" marginLeft="40px" marginBottom="30px" fontWeight="600" color="white" _dark={{
         color: "white"
       }}>
-          Back!
+          account
         </Heading>
         
         <VStack space={3} mt="5">
@@ -35,7 +35,53 @@ const Login = () => {
               />
             }
             marginBottom="20px"
+            placeholder="Username"
+            placeholderTextColor="muted.400"
+            borderColor="dark.100"
+            color="white"
+            borderRadius="10"
+            fontSize="14px"
+             />
+          </FormControl>
+          <FormControl>
+            <Input 
+            height="55px" 
+            bg="#262626"
+            
+            
+            InputLeftElement={
+              <Icon as={<MaterialIcons name="email" />} 
+              size={5} 
+              ml="4" 
+              color="muted.400"
+              />
+            }
+            type="email"
+            marginBottom="20px"
             placeholder="Email"
+            placeholderTextColor="muted.400"
+            borderColor="dark.100"
+            color="white"
+            borderRadius="10"
+            fontSize="14px"
+             />
+          </FormControl>
+          <FormControl>
+            <Input 
+            height="55px" 
+            bg="#262626"
+            
+            
+            InputLeftElement={
+              <Icon as={<MaterialIcons name="phone" />} 
+              size={5} 
+              ml="4" 
+              color="muted.400"
+              />
+            }
+            type="text"
+            marginBottom="20px"
+            placeholder="Mobile Number"
             placeholderTextColor="muted.400"
             borderColor="dark.100"
             color="white"
@@ -70,14 +116,13 @@ const Login = () => {
             fontSize="14px"
              />
             <Link _text={{
-            fontSize: "sm",
-            fontWeight: "500",
-            color: "warning.600"
+            fontSize: "xs",
+            color: "#676767"
             
           }}
           isUnderlined={false} 
-          alignSelf="flex-end" mt="3">
-              Forgot Password?
+          alignSelf="start" mt="3">
+              By clicking on Register button, you agree to our policies
             </Link>
           </FormControl>
           </Box>
@@ -95,16 +140,16 @@ const Login = () => {
             color="white"
             fontWeight="bold"
           >
-              Sign In
+              Register
             </Text>
             <Button borderRadius="51px" height="51px" width="51px" bg="warning.600" 
-            marginLeft="190px">
+            marginLeft="175px">
             <AntDesign name="arrowright" size={24} color="white" />
             </Button>
            
           </HStack>
-          <Text color="white" textAlign="center" marginTop="100px">
-              sign in with
+          <Text color="white" textAlign="center" marginTop="60px">
+              sign up with
           </Text>
           <HStack marginLeft="90px" marginTop="5px"  >
             <Button bg="white" borderRadius="48px" width="48px" height="48px" marginRight="40px">
@@ -124,7 +169,7 @@ const Login = () => {
             fontSize: "sm",
             color: "muted.400",
           }}
-          marginTop="50px"
+          marginTop="20px"
           alignSelf="center"
           isUnderlined={false} 
           >
@@ -138,4 +183,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default Signup;
