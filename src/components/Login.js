@@ -3,7 +3,7 @@ import { Box, Text, Heading, Icon, VStack, FormControl, Input, Link, Button, HSt
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
 
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [show, setShow] = React.useState(false);
   return (
       <Center width="100%" h="100%">
@@ -128,7 +128,7 @@ const Login = () => {
           alignSelf="center"
           isUnderlined={false} 
           >
-              Back
+             New to Ride a Bike? <Text color="white" bold onPress={() => navigation.navigate("Signup")}> Signup</Text>
             </Link>
 
         </VStack>

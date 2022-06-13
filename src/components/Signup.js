@@ -120,8 +120,7 @@ const Signup = () => {
             color: "#676767"
             
           }}
-          isUnderlined={false} 
-          alignSelf="start" mt="3">
+          isUnderlined={false} mt="3">
               By clicking on Register button, you agree to our policies
             </Link>
           </FormControl>
