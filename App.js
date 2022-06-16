@@ -12,8 +12,8 @@ export default function App() {
       <StatusBar animated={true} />
         <SafeAreaProvider>
           <SafeAreaView>
-              {/* <Login /> */}
-              <Signup/>
+              <Login />
+              {/* <Signup/> */}
               {/* <ForgotPassword/> */}
           </SafeAreaView>
         </SafeAreaProvider>
