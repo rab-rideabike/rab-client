@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { NativeBaseProvider, Box, Text } from "native-base";
+import { NativeBaseProvider} from "native-base";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import ForgotPassword from "./src/components/ForgotPassword";
 import Login from "./src/components/Login";
@@ -15,13 +15,12 @@ export default function App() {
     <NativeBaseProvider theme={customTheme}>
       <StatusBar animated={true} />
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Signup" component={Signup} />
-              <Stack.Screen name="Forgot" component={ForgotPassword} />
-            </Stack.Navigator>
-          </NavigationContainer>
-
+              <Stack.Navigator initialRouteName="Login">
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Signup" component={Signup} />
+                <Stack.Screen name="Forgot" component={ForgotPassword} />
+              </Stack.Navigator>
+            </NavigationContainer>
     </NativeBaseProvider>
   );
 }
