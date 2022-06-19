@@ -1,10 +1,76 @@
-import React from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Box, Text, Heading, Icon, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider } from "native-base";
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../store/user/thunk';
+
 
 
 const Signup = () => {
-  const [show, setShow] = React.useState(false);
+  const dispatch = useDispatch;
+  const [usernameError, setUsernameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [show, setShow] = useState(false);
+  const [user, setUser] = useReducer({
+    username: '',
+    email: '',
+    phonenumber: '',
+    password: ''
+  });
+
+  const handleSignup = () => {
+    if(validate()){
+      // dispatch(signupUser(user));
+      console.log(user);
+    }
+    else{
+      console.log(user);
+      console.log(errors);
+      
+    }
+  };
+
+  const validateUsername = () => {
+    if(user.username.length < 4){
+      setUsernameError('Username is too short');
+    }
+    else{
+      setUsernameError('');
+    }
+  }
+
+  const validateEmail = () => {
+    const VALID_EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    
+    if(!(user.email.match(VALID_EMAIL_REGEX))){
+      setEmailError('Invalid Email');
+    }
+    else{
+      setEmailError('');
+    }
+  }
+
+  const validatePhone = () => {
+    if(user.phonenumber.length === 10){
+      setPhoneError('');
+    }
+    if(user.phonenumber.length < 10 || user.phonenumber.length > 10){
+      setPhoneError('Mobile Number should be 10 digits');
+    }
+      console.log(user.phonenumber.length, user.phonenumber);
+  }
+  const validatePassword = () => {
+    if(user.password.length < 5){
+      setPasswordError('Password should be atleast 5 digits');
+    }
+    else{
+      setPasswordError('');
+    }
+  }
+
   return (
       <Center width="100%" h="100%">
            <Box safeArea p="2" h="100%" w="100%" bg="dark.50">
@@ -21,12 +87,10 @@ const Signup = () => {
         
         <VStack space={3} mt="5">
         <Box marginLeft="40px" width="317px">
-          <FormControl>
+          <FormControl isInvalid={usernameError!==''}>
             <Input 
             height="55px" 
             bg="#262626"
-            
-            
             InputLeftElement={
               <Icon as={<MaterialIcons name="person" />} 
               size={5} 
@@ -34,7 +98,9 @@ const Signup = () => {
               color="muted.400"
               />
             }
-            marginBottom="20px"
+            onChangeText={(value) => setUser({...user, username: value})}
+            onChange={validateUsername}
+            name="username"
             placeholder="Username"
             placeholderTextColor="muted.400"
             borderColor="dark.100"
@@ -42,13 +108,13 @@ const Signup = () => {
             borderRadius="10"
             fontSize="14px"
              />
+           {usernameError !== '' ? <FormControl.ErrorMessage marginBottom="10px">{usernameError}</FormControl.ErrorMessage> : ''} 
           </FormControl>
-          <FormControl>
+          
+           <FormControl isInvalid={emailError!==''}>
             <Input 
             height="55px" 
             bg="#262626"
-            
-            
             InputLeftElement={
               <Icon as={<MaterialIcons name="email" />} 
               size={5} 
@@ -56,8 +122,10 @@ const Signup = () => {
               color="muted.400"
               />
             }
+            onChangeText={(value) => setUser({...user, email: value})}
+            onChange={validateEmail}
+            name="email"
             type="email"
-            marginBottom="20px"
             placeholder="Email"
             placeholderTextColor="muted.400"
             borderColor="dark.100"
@@ -65,8 +133,10 @@ const Signup = () => {
             borderRadius="10"
             fontSize="14px"
              />
+             {emailError !== '' ? <FormControl.ErrorMessage marginBottom="10px">{emailError}</FormControl.ErrorMessage> : ''}
+          
           </FormControl>
-          <FormControl>
+           <FormControl isInvalid={phoneError !== ''}>
             <Input 
             height="55px" 
             bg="#262626"
@@ -80,7 +150,9 @@ const Signup = () => {
               />
             }
             type="text"
-            marginBottom="20px"
+            onChangeText={(value) => setUser({...user, phonenumber: value})}
+            onChange={validatePhone}
+            name="phonenumber"
             placeholder="Mobile Number"
             placeholderTextColor="muted.400"
             borderColor="dark.100"
@@ -88,8 +160,10 @@ const Signup = () => {
             borderRadius="10"
             fontSize="14px"
              />
+            {phoneError !=='' ? <FormControl.ErrorMessage marginBottom="10px">{phoneError}</FormControl.ErrorMessage> : ''}
+          
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={passwordError!==''}>
             <Input 
             height="55px" 
             type={show ? "text" : "password"}
@@ -108,6 +182,9 @@ const Signup = () => {
               onPress={() => setShow(!show)} 
               />
             } 
+            onChangeText={(value) => setUser({...user, password: value})}
+            onChange={validatePassword}
+            name="password"
             placeholder="Password"
             placeholderTextColor="muted.400"
             borderColor="dark.100"
@@ -115,7 +192,13 @@ const Signup = () => {
             borderRadius="10"
             fontSize="14px"
              />
-            <Link _text={{
+            {passwordError !=='' ? <FormControl.ErrorMessage marginBottom="10px">{passwordError}</FormControl.ErrorMessage> : ''}
+          
+            
+          </FormControl>
+
+
+          <Link _text={{
             fontSize: "xs",
             color: "#676767"
             
@@ -123,7 +206,6 @@ const Signup = () => {
           isUnderlined={false} mt="3">
               By clicking on Register button, you agree to our policies
             </Link>
-          </FormControl>
           </Box>
           {/* <Button mt="2" colorScheme="indigo">
             Sign in
@@ -142,7 +224,9 @@ const Signup = () => {
               Register
             </Text>
             <Button borderRadius="51px" height="51px" width="51px" bg="warning.600" 
-            marginLeft="175px">
+            marginLeft="175px"
+            onPress={handleSignup}
+            >
             <AntDesign name="arrowright" size={24} color="white" />
             </Button>
            

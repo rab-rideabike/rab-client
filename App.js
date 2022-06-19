@@ -21,7 +21,6 @@ export default function App() {
               <Stack.Screen name="Forgot" component={ForgotPassword} />
             </Stack.Navigator>
           </NavigationContainer>
-
     </NativeBaseProvider>
   );
 }
