@@ -1,11 +1,9 @@
-const URL = '';
+import axios from "axios";
 
-export const signupUser = async(userDetails) => fetch(URL, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    referrerPolicy: 'no-referrer',
-    body: JSON.stringify(userDetails)
-})
+// const URL = "https://rab-rideabike.herokuapp.com";
 
+const URL = "http://localhost:5051";
+
+export const signupUser = async (userDetails) => {
+    axios.post(`${URL}/users/signup`, JSON.stringify(userDetails))
+};

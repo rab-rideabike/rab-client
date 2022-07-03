@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Heading, Icon, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider } from "native-base";
+import { Box, Text, Heading, Icon, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider, ScrollView } from "native-base";
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
 
 
@@ -7,6 +7,7 @@ const Login = ({navigation}) => {
   const [show, setShow] = React.useState(false);
   return (
       <Center width="100%" h="100%">
+        <ScrollView>
            <Box safeArea p="2" h="100%" w="100%" bg="dark.50">
            <Heading size="lg" fontSize="36" marginLeft="40px" fontWeight="600" color="white" _dark={{
         color: "white"
@@ -134,6 +135,7 @@ const Login = ({navigation}) => {
         </VStack>
 
            </Box>
+           </ScrollView>
       </Center>
   )
 }

@@ -9,8 +9,8 @@ const userSlice = createSlice({
         data: {
             id: null,
             email: null,
-            username: null,
-            phonenumber: ''
+            name: null,
+            mobile: ''
         },
         error: '',
         errorCode: null,
