@@ -17,6 +17,7 @@ import {
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../store/user/thunk";
+import { View, StyleSheet, Alert } from "react-native";
 
 const initialState = {
   name: "",
@@ -57,11 +58,27 @@ const Signup = () => {
       !phoneError &&
       !passwordError
     ) {
-      dispatcher(signupUser(user));
+
+      try{
+        dispatcher(signupUser(user));
+      }catch(e){
+        console.log('ERRORRRRR- SIGNUPERROR---------------------------------')
+        Alert.alert(
+          "Encountered an Error",
+         e.message,
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
+      }
       // console.log(user);
     } else {
-      // console.log(user);
-      // console.log(errors);
+
     }
   };
 
@@ -141,6 +158,7 @@ const Signup = () => {
               <FormControl isInvalid={usernameError !== ""}>
                 <Input
                   height="55px"
+                  selectionColor={"white"}
                   bg="#262626"
                   InputLeftElement={
                     <Icon
@@ -173,6 +191,7 @@ const Signup = () => {
               <FormControl isInvalid={emailError !== ""}>
                 <Input
                   height="55px"
+                  selectionColor={"white"}
                   bg="#262626"
                   InputLeftElement={
                     <Icon
@@ -205,6 +224,7 @@ const Signup = () => {
               <FormControl isInvalid={phoneError !== ""}>
                 <Input
                   height="55px"
+                  selectionColor={"white"}
                   bg="#262626"
                   InputLeftElement={
                     <Icon
@@ -237,6 +257,7 @@ const Signup = () => {
               <FormControl isInvalid={passwordError !== ""}>
                 <Input
                   height="55px"
+                  selectionColor={"white"}
                   type={show ? "text" : "password"}
                   InputLeftElement={
                     <Icon
